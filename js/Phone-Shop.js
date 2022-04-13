@@ -19,6 +19,9 @@ const phoneDataLoad = () => {
     const searchBox = document.getElementById("search-box").value;
   document.getElementById("search-box").value = "";
   toggleSpinner("block");
+
+  const cardsContainerrow = document.getElementById("row-container");
+  cardsContainerrow.textContent = "";  
   
   if (searchBox == "") {
     blankInput("block");
@@ -38,14 +41,15 @@ const phoneDataLoad = () => {
 const displayResult = (phone) => {
   // console.log(phone)
   const cardContainer = document.getElementById("cards-container");
+  incorrectInput("none")
+  cardContainer.textContent = "";
+  toggleSpinner("none");
+
   if (phone.length == 0) {
     toggleSpinner("none")
     incorrectInput("block")
   }
   else {
-    incorrectInput("none")
-    cardContainer.textContent = "";
-    toggleSpinner("none");
     phone.forEach(phones => {
           const div = document.createElement("div");
           div.classList.add("col");
@@ -71,13 +75,14 @@ const phoneDetails = async phoneDetails => {
     const phoneDetailsUrl = `https://openapi.programming-hero.com/api/phone/${phoneDetails}`;
     const res = await fetch(phoneDetailsUrl);
     const data = await res.json();
-    displaySinglePhone(data)
+  displaySinglePhone(data)
+  console.log(data)
 };
 
+
 const displaySinglePhone = singlePhones => {
-    console.log(singlePhones)
-    const cardsContainer = document.getElementById("row-container");
-    cardsContainer.textContent = "";
+    const cardsContainerrow = document.getElementById("row-container");
+    cardsContainerrow.textContent = "";
     const div = document.createElement("div");
     div.classList.add("row");
   div.innerHTML = `
@@ -97,7 +102,7 @@ const displaySinglePhone = singlePhones => {
       ${singlePhones.data.mainFeatures.sensors[5]} ,
       ${singlePhones.data.mainFeatures.sensors[6]}  
       </p>
-      <p class="card-text mb-1"><span class = "fw-bold">Bluetooth:</span> ${singlePhones.data.others.Bluetooth}</p>
+      <p class="card-text mb-1"><span class = "fw-bold">Bluetooth:</span> ${singlePhones.data.others?.Bluetooth}</p>
       <p class="card-text mb-1"><span class = "fw-bold">GPS:</span> ${singlePhones.data.others.GPS}</p>
       <p class="card-text mb-1"><span class = "fw-bold">USB:</span> ${singlePhones.data.others.USB}</p>
       <p class="card-text mb-1"><span class = "fw-bold">NFC:</span> ${singlePhones.data.others.NFC}</p>
@@ -107,5 +112,5 @@ const displaySinglePhone = singlePhones => {
   </div>
  
     `
-    cardsContainer.appendChild(div)
+    cardsContainerrow.appendChild(div)
 }
