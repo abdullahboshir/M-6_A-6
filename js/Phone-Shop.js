@@ -3,10 +3,16 @@ const toggleSpinner = spinner => {
    document.getElementById("spinner").style.display = spinner;
 }
 
-// warning message 
-const warningMsg = warning => {
-  document.getElementById("error").style.display = warning;
+// blank input warning
+const blankInput = warning => {
+  document.getElementById("blank-input").style.display = warning;
 }
+
+// incorrect items input warning
+const incorrectInput = CorrectMsg => {
+  document.getElementById("incorrect-input").style.display = CorrectMsg;
+}
+
 
 
 const phoneDataLoad = () => {
@@ -15,12 +21,12 @@ const phoneDataLoad = () => {
   toggleSpinner("block");
   
   if (searchBox == "") {
-    warningMsg("block");
+    blankInput("block");
     toggleSpinner("none");
   }
   else {
     //    data Load 
-    warningMsg("none");
+    blankInput("none");
     fetch(`https://openapi.programming-hero.com/api/phones?search=${searchBox}`)
         .then(res => res.json())
         .then(data => displayResult(data.data));
@@ -34,9 +40,10 @@ const displayResult = (phone) => {
   const cardContainer = document.getElementById("cards-container");
   if (phone.length == 0) {
     toggleSpinner("none")
-    console.log("no match")
+    incorrectInput("block")
   }
   else {
+    incorrectInput("none")
     cardContainer.textContent = "";
     toggleSpinner("none");
     phone.forEach(phones => {
