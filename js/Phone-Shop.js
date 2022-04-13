@@ -24,7 +24,7 @@ const displayResult = (phone) => {
 <div class="card-body">
   <h5 class="card-title">Model: ${phones.phone_name}</h5>
   <p class="card-text">Brand: ${phones.brand}</p>
-  <button onclick = "phoneDetails('${phones.slug}')" class = "w-50 bg-primary">Full Details</button>
+  <button style = "background-color:#32ba7c; width: 120px; height: 40px" onclick = "phoneDetails('${phones.slug}')" class = "rounded text-white border-0">Full Details</button>
  
 </div>
 </div>
@@ -47,7 +47,7 @@ const displaySinglePhone = singlePhones => {
     cardsContainer.textContent = "";
     const div = document.createElement("div");
     div.classList.add("row");
-    div.innerHTML = `
+  div.innerHTML = `
     <div class="col-md-4";>
     <img style = "width: 940px" src="${singlePhones.data.image}" class="img-fluid rounded-start" alt="...">
   </div>
@@ -72,6 +72,7 @@ const displaySinglePhone = singlePhones => {
       <p class="card-text"><small class="text-muted">${singlePhones.data.releaseDate}</small></p>
     </div>
   </div>
+ 
     `
     cardsContainer.appendChild(div)
 }
