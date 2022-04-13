@@ -30,28 +30,33 @@ const phoneDataLoad = () => {
 
 
 const displayResult = (phone) => {
-    // console.log(phone)
-    const cardContainer = document.getElementById("cards-container");
-  cardContainer.textContent = "";
-  toggleSpinner("none");
-  phone.forEach(phones => {
-      if
-        // phoneDetails(phones.slug)
-        const div = document.createElement("div");
-        div.classList.add("col");
-        div.innerHTML = `
-<div class="card h-100 shadow p-3">
-<img src="${phones.image}" class="card-img-top" alt="...">
-<div class="card-body">
-  <h5 class="card-title">Model: ${phones.phone_name}</h5>
-  <p class="card-text">Brand: ${phones.brand}</p>
-  <button style = "background-color:#32ba7c; width: 120px; height: 40px" onclick = "phoneDetails('${phones.slug}')" class = "rounded text-white border-0">Full Details</button>
+  // console.log(phone)
+  const cardContainer = document.getElementById("cards-container");
+  if (phone.length == 0) {
+    toggleSpinner("none")
+    console.log("no match")
+  }
+  else {
+    cardContainer.textContent = "";
+    toggleSpinner("none");
+    phone.forEach(phones => {
+          const div = document.createElement("div");
+          div.classList.add("col");
+          div.innerHTML = `
+  <div class="card h-100 shadow p-3">
+  <img src="${phones.image}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Model: ${phones.phone_name}</h5>
+    <p class="card-text">Brand: ${phones.brand}</p>
+    <button style = "background-color:#32ba7c; width: 120px; height: 40px" onclick = "phoneDetails('${phones.slug}')" class = "rounded text-white border-0">Full Details</button>
+   
+  </div>
+  </div>
+  `;
+      cardContainer.appendChild(div);
+      });
+  };
  
-</div>
-</div>
-`;
-      cardContainer.appendChild(div)
-    });
 };
 
 
