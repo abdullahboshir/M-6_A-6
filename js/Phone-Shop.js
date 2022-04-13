@@ -3,15 +3,28 @@ const toggleSpinner = spinner => {
    document.getElementById("spinner").style.display = spinner;
 }
 
+// warning message 
+const warningMsg = warning => {
+  document.getElementById("error").style.display = warning;
+}
+
+
 const phoneDataLoad = () => {
     const searchBox = document.getElementById("search-box").value;
   document.getElementById("search-box").value = "";
   toggleSpinner("block");
-    
-//    data Load 
+  
+  if (searchBox == "") {
+    warningMsg("block");
+    toggleSpinner("none");
+  }
+  else {
+    //    data Load 
+    warningMsg("none");
     fetch(`https://openapi.programming-hero.com/api/phones?search=${searchBox}`)
         .then(res => res.json())
         .then(data => displayResult(data.data));
+  }
 };
 
 
@@ -21,7 +34,8 @@ const displayResult = (phone) => {
     const cardContainer = document.getElementById("cards-container");
   cardContainer.textContent = "";
   toggleSpinner("none");
-    phone.forEach(phones => {
+  phone.forEach(phones => {
+      if
         // phoneDetails(phones.slug)
         const div = document.createElement("div");
         div.classList.add("col");
