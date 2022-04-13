@@ -26,7 +26,7 @@ const displayResult = (phone) => {
         const div = document.createElement("div");
         div.classList.add("col");
         div.innerHTML = `
-<div class="card h-100">
+<div class="card h-100 shadow p-3">
 <img src="${phones.image}" class="card-img-top" alt="...">
 <div class="card-body">
   <h5 class="card-title">Model: ${phones.phone_name}</h5>
