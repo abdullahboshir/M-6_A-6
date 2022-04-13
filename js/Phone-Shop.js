@@ -1,6 +1,12 @@
+// spinner 
+const toggleSpinner = spinner => {
+   document.getElementById("spinner").style.display = spinner;
+}
+
 const phoneDataLoad = () => {
     const searchBox = document.getElementById("search-box").value;
-    document.getElementById("search-box").value = "";
+  document.getElementById("search-box").value = "";
+  toggleSpinner("block");
     
 //    data Load 
     fetch(`https://openapi.programming-hero.com/api/phones?search=${searchBox}`)
@@ -13,7 +19,8 @@ const phoneDataLoad = () => {
 const displayResult = (phone) => {
     // console.log(phone)
     const cardContainer = document.getElementById("cards-container");
-    cardContainer.textContent = "";
+  cardContainer.textContent = "";
+  toggleSpinner("none");
     phone.forEach(phones => {
         // phoneDetails(phones.slug)
         const div = document.createElement("div");

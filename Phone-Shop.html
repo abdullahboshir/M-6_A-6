@@ -23,17 +23,21 @@
         <input id="search-box" type="text" class="form-control" placeholder="Find your neded Phone" aria-label="Recipient's username" aria-describedby="button-addon2">
         <button onclick="phoneDataLoad()" class="btn btn-outline-secondary" type="button" id="button-addon2 search-btn">Search</button>
       </div>
+      <div style="text-align: center; display: none;">Lonading...</div>
+
+      <div class="d-flex justify-content-center">
+        <div id="spinner" style="display: none;" class="spinner-border" role="status">
+        </div>
+      </div>
 
        <!------------------------------- 
                Single Card  
     ------------------------------->
-    <div id="row-container" class="card mb-3 mx-auto shadow-lg mb-5" style="max-width: 940px;">
+    <div id="row-container" class="mb-3 mx-auto shadow-lg mb-5" style="max-width: 940px;">
         <div class="row g-0;">
          
         </div>
       </div>
-
-
 
        <!------------------------------- 
                Card group  
